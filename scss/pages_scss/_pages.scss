@@ -1,0 +1,78 @@
+main {}
+
+h1 {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-weight: 700;
+  font-size: 5.1vw;
+  line-height: 1.2;
+
+}
+
+h2 {
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-weight: 700;
+  font-size: 3.1vw;
+  line-height: 1.3;
+}
+
+h3 {}
+
+img {
+  object-fit: cover;
+}
+
+input {
+  border: none;
+  outline: none;
+  transition: all 0.8s;
+}
+
+a {
+  cursor: pointer;
+}
+
+.main input:hover,
+.main input:focus,
+.main input:active {}
+
+.container {
+  display: block;
+  width: calc(100% - 2vw);
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+}
+
+
+.text-bold {
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}
+
+.active {
+  display: block !important;
+}
+
+@media (min-width: 480px) {}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 992px) {}
+
+@media (min-width: 1686px) {}
+
+@media (max-width: 1199px) {}
+
+@media (max-width: 991px) {}
+
+@media (max-width: 767px) {
+  .container {
+    width: calc(100% - 5vw);
+
+  }
+}
+
+@media (max-width: 479px) {}

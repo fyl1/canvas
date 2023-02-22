@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html class="" lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>grisha paramonov</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="shortcut icon" href="image/favicon_w.png" type="image/png" />
+    <link href="scss/base/main.css" rel="stylesheet" media="screen" />
+    <link rel="stylesheet" href="css/swiper-bundle.min.css" />
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500;700;800&display=swap" rel="stylesheet"> -->
+  </head>
+  <body class="body">
+    <main class="main" role="main" style="overflow: hidden">
+      <!-- <canvas id="canvas"></canvas> -->
+
+      <section class="chart">
+        <h1 class="chart__title">oooooo</h1>
+        <div class="chart__inner">
+          <form class="chart__data" action="#" method="POST">
+            <div class="chart__input-group">
+              <label class="chart__label" for="Storage"
+                >Storage
+                <span class="chart__label--num"></span>
+                <span class="chart__label--gb">GB</span></label
+              >
+              <input
+                class="chart__input chart__input--storage input-field"
+                type="range"
+                name="Storage"
+                id="Storage"
+                min="0"
+                max="1000"
+                required
+              />
+            </div>
+            <div class="chart__input-group">
+              <label class="chart__label" for="Transfer"
+                >Transfer
+                <span class="chart__label--num"> </span>
+                <span class="chart__label--gb">GB</span>
+              </label>
+              <input
+                class="chart__input chart__input--transfer input-field"
+                type="range"
+                name="Transfer"
+                id="Transfer"
+                min="0"
+                max="1000"
+                required
+              />
+            </div>
+            <!-- Остальные поля ввода: PHP и Python -->
+
+            <input
+              class="chart__submit-button input-field"
+              type="submit"
+              value="Показать график"
+            />
+          </form>
+          <div class="type-ssd">
+            <div class="checkbox">
+              <input type="radio" class="type-radio" checked name="type-ssd" id="typeHdd" />
+              <label for="typeHdd" class="text"> HDD </label>
+            </div>
+            <div class="checkbox">
+              <input type="radio" class="type-radio" name="type-ssd" id="typeSsd" />
+              <label for="typeSsd" class="text"> SSD </label>
+            </div>
+          </div>
+          <div class="type-multi">
+            <div class="checkbox">
+              <input type="radio" class="type-radio" checked name="type-multi" id="typeMulti" />
+              <label for="typeMulti" class="text"> Multi </label>
+            </div>
+            <div class="checkbox">
+              <input type="radio" class="type-radio" name="type-multi" id="typeSingle" />
+              <label for="typeSingle" class="text"> Single </label>
+            </div>
+          </div>
+          <div class="chart__canvas-wrapper">
+            <canvas id="canvas" width="500" height="250">
+              Браузер не поддерживает Canvas
+            </canvas>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

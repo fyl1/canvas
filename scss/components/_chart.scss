@@ -1,0 +1,61 @@
+.chart {
+
+    // .chart__title
+
+    &__title {
+    }
+
+    // .chart__inner
+
+    &__inner {
+        display: flex;
+    }
+
+    // .chart__data
+
+    &__data {
+    }
+
+    // .chart__input-group
+
+    &__input-group {
+    }
+
+    // .chart__label
+
+    &__label {
+    }
+
+    // .chart__label--num
+
+    &__label--num {
+    }
+
+    // .chart__label--gb
+
+    &__label--gb {
+    }
+
+    // .chart__input
+
+    &__input {
+    }
+
+    // .chart__submit-button
+
+    &__submit-button {
+    }
+
+    // .chart__canvas-wrapper
+
+    &__canvas-wrapper {
+    }
+}
+.input-field {
+}
+#canvas{
+    width: 60vw;
+    height: auto;
+    max-width: rem-calc(1500);
+    transform: rotate(180deg);
+}
