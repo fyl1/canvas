@@ -152,7 +152,7 @@ radioType.forEach((el) => {
             i.inputStorage * i.priceStorage + i.inputTransfer * i.priceTransfer;
             let testValue = 0;
             if (sumValue < i.minPayment && i.minPayment > 0 &&  !!i.minPayment) {
-              testValue = i.minPayment 
+              sumValue = i.minPayment 
           }
           // if (sumValue < i.minPayment && i.minPayment > 0) {
           //   sumValue = i.minPayment;
@@ -161,7 +161,7 @@ radioType.forEach((el) => {
           //   //   "sumValue inner  if( i.sumValue <  !!i.minPayment && i.minPayment > 0  )"
           //   // );
           // }
-          console.log(sumValue, "i.sumValue dddd")
+          console.log(sumValue, "i.sumValue dddd", testValue, "testValue")
           // if (i.sumValue > i.maxPayment && i.maxPayment > 0) {
           //   i.sumValue = i.maxPayment;
           //   console.log(
@@ -220,7 +220,7 @@ radioType.forEach((el) => {
           // }
           // console.log(i.sumValue, "sumValue");
           // return (i.value = i.sumValue);
-          return i.value = testValue;
+          return i.value = sumValue;
         });
       }
       console.log(newInputElements, "newInputElements sumValue");
