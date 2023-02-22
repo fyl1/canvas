@@ -75,49 +75,49 @@ document.addEventListener("DOMContentLoaded", function () {
   let newInputElements = [];
   let rezultValue = "";
 
-///// чекбоксы отлавливает и добавляем значение в общий массив
+  ///// чекбоксы отлавливает и добавляем значение в общий массив
 
-radioType.forEach((el) => {
-  el.addEventListener("change", (e) => {
-    for (let i = 0; i < radioTypeSsd.length; i++) {
-      if (radioTypeSsd[i].checked && radioTypeSsd[i] == 0) {
-        varPriceStorageHdd = true;
-      } else {
-        varPriceStorageSsd = false;
+  radioType.forEach((el) => {
+    el.addEventListener("change", (e) => {
+      for (let i = 0; i < radioTypeSsd.length; i++) {
+        if (radioTypeSsd[i].checked && radioTypeSsd[i] == 0) {
+          varPriceStorageHdd = true;
+        } else {
+          varPriceStorageSsd = false;
+        }
+        if (radioTypeSsd[i].checked && radioTypeSsd[i] == 1) {
+          varPriceStorageHdd = true;
+        } else {
+          varPriceStorageSsd = false;
+        }
       }
-      if (radioTypeSsd[i].checked && radioTypeSsd[i] == 1) {
-        varPriceStorageHdd = true;
-      } else {
-        varPriceStorageSsd = false;
+      for (let i = 0; i < radioTypeMulti.length; i++) {
+        if (radioTypeMulti[i].checked && radioTypeSsd[i] == 0) {
+          varPriceStorageMulti = true;
+        } else {
+          varPriceStorageSingle = false;
+        }
+        if (radioTypeMulti[i].checked && radioTypeSsd[i] == true) {
+          varPriceStorageSingle = true;
+        } else {
+          varPriceStorageMulti = false;
+        }
       }
-    }
-    for (let i = 0; i < radioTypeMulti.length; i++) {
-      if (radioTypeMulti[i].checked && radioTypeSsd[i] == 0) {
-        varPriceStorageMulti = true;
-      } else {
-        varPriceStorageSingle = false;
-      }
-      if (radioTypeMulti[i].checked && radioTypeSsd[i] == true) {
-        varPriceStorageSingle = true;
-      } else {
-        varPriceStorageMulti = false;
-      }
-    }
-    getData = (inputElements) => {
-      return Array.from(inputElements).map((i, index) => ({
-        priceStorageHdd: varPriceStorageHdd,
-        priceStorageSsd: varPriceStorageSsd,
-        priceStorageMulti: varPriceStorageMulti,
-        priceStorageSingle: varPriceStorageSingle,
-        name: i.name,
-        color: i.color,
-        value: i.value,
-      }));
-    };
+      getData = (inputElements) => {
+        return Array.from(inputElements).map((i, index) => ({
+          priceStorageHdd: varPriceStorageHdd,
+          priceStorageSsd: varPriceStorageSsd,
+          priceStorageMulti: varPriceStorageMulti,
+          priceStorageSingle: varPriceStorageSingle,
+          name: i.name,
+          color: i.color,
+          value: i.value,
+        }));
+      };
+    });
   });
-});
 
-///// and чекбоксы отлавливает и добавляем значение в общий массив
+  ///// and чекбоксы отлавливает и добавляем значение в общий массив
 
   /////  импуты storage и  transfer  отлавливает и добавляем значение в общий массив
 
@@ -150,9 +150,16 @@ radioType.forEach((el) => {
         return Array.from(e).map(function (i, index) {
           let sumValue =
             i.inputStorage * i.priceStorage + i.inputTransfer * i.priceTransfer;
-            let testValue = 0;
-            if (sumValue < i.minPayment && i.minPayment > 0 &&  !!i.minPayment) {
-              sumValue = i.minPayment 
+          let testValue = 0;
+          if (sumValue < i.minPayment && i.minPayment > 0 && !!i.minPayment) {
+            sumValue = i.minPayment;
+          }
+          if (
+            i.sumValue >= i.maxPayment &&
+            i.maxPayment > 0 &&
+            !!i.minPayment
+          ) {
+            sumValue = i.maxPayment;
           }
           // if (sumValue < i.minPayment && i.minPayment > 0) {
           //   sumValue = i.minPayment;
@@ -161,7 +168,7 @@ radioType.forEach((el) => {
           //   //   "sumValue inner  if( i.sumValue <  !!i.minPayment && i.minPayment > 0  )"
           //   // );
           // }
-          console.log(sumValue, "i.sumValue dddd", testValue, "testValue")
+          console.log(sumValue, "i.sumValue dddd", testValue, "testValue");
           // if (i.sumValue > i.maxPayment && i.maxPayment > 0) {
           //   i.sumValue = i.maxPayment;
           //   console.log(
@@ -220,13 +227,13 @@ radioType.forEach((el) => {
           // }
           // console.log(i.sumValue, "sumValue");
           // return (i.value = i.sumValue);
-          return i.value = sumValue;
+          return (i.value = sumValue);
         });
       }
       console.log(newInputElements, "newInputElements sumValue");
       resultValue(newInputElements);
     });
-  
+
     getData = (newInputElements) => {
       return Array.from(newInputElements).map((i, index) => ({
         name: i.name,
@@ -280,13 +287,13 @@ radioType.forEach((el) => {
   ctx.rotate(-Math.PI / 2);
   // Получаем на вход items — массив объектов с данными
   const renderChart = (items) => {
-    console.log(items, "items в канвас")
+    console.log(items, "items в канвас");
     // Очищаем всю область холста
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Задаём координаты для первого столбца и подписи
     let currentBarX = BarCoordinate.INITIAL_X;
-    let currentLabelY = LabelCoordinate.INITIAL_Y; 
+    let currentLabelY = LabelCoordinate.INITIAL_Y;
     // Определяем горизонтальный отступ между соседними столбцами
     const gapBetweenBars = BarSize.WIDTH + Gap.HORIZONTAL;
 
@@ -309,8 +316,7 @@ radioType.forEach((el) => {
       ctx.rotate(-Math.PI / 2);
       // В изменённой системе координат рисуем текст снизу вверх
       ctx.fillText(
-    
-        typeof item.name === 'string' ? item.name.toUpperCase() : item.name,
+        typeof item.name === "string" ? item.name.toUpperCase() : item.name,
         LabelCoordinate.INITIAL_X,
         currentLabelY
       );
