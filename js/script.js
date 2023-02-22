@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
           if (
             i.sumValue >= i.maxPayment &&
             i.maxPayment > 0 &&
-            !!i.minPayment
+            !!i.maxPayment
           ) {
             sumValue = i.maxPayment;
           }
