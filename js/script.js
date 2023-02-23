@@ -109,8 +109,8 @@ document.addEventListener("DOMContentLoaded", function () {
         varPriceStorageSsd,
         "varPriceStorageSsd", 'консолька в блоке с чекбоксами'
       );
-      getData = (inputElements) => {
-        return Array.from(inputElements).map((i, index) => ({
+      getData = (newInputElements) => {
+        return Array.from(newInputElements).map((i, index) => ({
           priceStorageHdd: varPriceStorageHdd,
           priceStorageSsd: varPriceStorageSsd,
           priceStorageMulti: varPriceStorageMulti,
