@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
         varPriceStorageHdd,
         "varPriceStorageHdd",
         varPriceStorageSsd,
-        "varPriceStorageSsd"
+        "varPriceStorageSsd", 'консолька в блоке с чекбоксами'
       );
       getData = (inputElements) => {
         return Array.from(inputElements).map((i, index) => ({
@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
             sumValue = i.maxPayment;
           }
 
-          console.log(sumValue, "i.sumValue dddd", testValue, "testValue");
+          console.log(sumValue, "i.sumValue dddd", testValue, "testValue", 'консолька в блоке с resultValue там где все считаеться');
 
           if (i.priceStorageHdd === true && !!i.priceStorageHdd) {
             (i.priceStorage = 0.01),
@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
               inputElements,
               "inputElements",
               i.priceStorage,
-              "i.priceStorage"
+              "i.priceStorage", 'консолька в блоке с resultValue иф что проверяет priceStorageHdd '
             );
           }
           if (i.priceStorageSsd === true && !!i.priceStorageSsd) {
@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function () {
               inputElements,
               "inputElements",
               i.priceStorage,
-              "i.priceStorage"
+              "i.priceStorage", 'консолька в блоке с resultValue иф что проверяет priceStorageSsd'
             );
           }
           // if (!i.priceStorageMulti === true) {
@@ -240,9 +240,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   ///// рисуем график
 
-  console.log(getData, "getData");
-  const items = getData(inputElements);
-  console.log(items, "items");
+ 
+  const items = getData(newInputElements);
+  console.log(items, "items", 'консолька в начале функции канваса,  показивает что на входе приходит');
   const MAX_PERCENTAGE = 50;
 
   const Gap = {
@@ -328,12 +328,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   renderChart(getData(inputElements));
 
-  inputRange.forEach((el) => {
-    el.addEventListener("input", (e) => {
-      // console.log("inputRange.forEach end");
-      renderChart(getData(newInputElements));
-    });
-  });
+  // inputRange.forEach((el) => {
+  //   el.addEventListener("input", (e) => {
+  //     // console.log("inputRange.forEach end");
+  //     renderChart(getData(newInputElements));
+  //   });
+  // });
   const formElement = document.querySelector(`.chart__data`);
 
   formElement.addEventListener(`submit`, (evt) => {
