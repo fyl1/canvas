@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const inputElements = [
     {
       name: "backblaze",
-      value: "12",
+      value: "1",
       color: "red",
       minPayment: 7,
       maxPayment: 10,
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       name: "bunny",
-      value: "22",
+      value: "1",
       color: "red",
       minPayment: "",
       maxPayment: "",
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       name: "scaleway",
-      value: "22",
+      value: "1",
       color: "red",
       minPayment: "",
       maxPayment: "",
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       name: "vultr",
-      value: "22",
+      value: "1",
       color: "red",
       minPayment: 5,
       maxPayment: "",
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let varPriceStorageSingle = Boolean;
   let varPriceStorageHdd = Boolean;
   let varPriceStorageSsd = Boolean;
-  let newInputElements = inputElements;
+  let newInputElements = [];
   let rezultValue = "";
 
   ///// чекбоксы отлавливает и добавляем значение в общий массив
@@ -109,8 +109,8 @@ document.addEventListener("DOMContentLoaded", function () {
         varPriceStorageSsd,
         "varPriceStorageSsd", 'консолька в блоке с чекбоксами'
       );
-      getData = (newInputElements) => {
-        return Array.from(newInputElements).map((i, index) => ({
+      getData = (InputElements) => {
+        return Array.from(InputElements).map((i, index) => ({
           priceStorageHdd: varPriceStorageHdd,
           priceStorageSsd: varPriceStorageSsd,
           priceStorageMulti: varPriceStorageMulti,
@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
               inputElements,
               "inputElements",
               i.priceStorage,
-              "i.priceStorage", 'консолька в блоке с resultValue иф что проверяет priceStorageHdd '
+              "i.priceStorage", 'консолька в блоке с resultValue иф что проверяет priceStorageHdd ',i.priceStorageHdd
             );
           }
           if (i.priceStorageSsd === true && !!i.priceStorageSsd) {
@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
               inputElements,
               "inputElements",
               i.priceStorage,
-              "i.priceStorage", 'консолька в блоке с resultValue иф что проверяет priceStorageSsd'
+              "i.priceStorage", 'консолька в блоке с resultValue иф что проверяет priceStorageSsd', i.priceStorageSsd
             );
           }
           // if (!i.priceStorageMulti === true) {
@@ -215,7 +215,7 @@ document.addEventListener("DOMContentLoaded", function () {
           // }
           // console.log(i.sumValue, "sumValue");
           // return (i.value = i.sumValue);
-          return (i.value = sumValue);
+          return (i.value = sumValue.toFixed(2));
         });
       }
       console.log(newInputElements, "newInputElements sumValue");
@@ -309,6 +309,8 @@ document.addEventListener("DOMContentLoaded", function () {
         LabelCoordinate.INITIAL_X,
         currentLabelY
       );
+      ctx.fillText( `${item.value} $`, LabelCoordinate.INITIAL_X + barHeight  + 200,
+        currentLabelY)
       // Возвращаемся к изначальной системе координат
       ctx.restore();
       // Рисуем столбец

@@ -49,8 +49,30 @@
     // .chart__canvas-wrapper
 
     &__canvas-wrapper {
+        position: relative;
     }
 }
+.type-ssd {
+    position: absolute;
+    display: flex;
+    top: 100px;
+    left: rem-calc(80);
+    z-index: 3;
+}
+.checkbox {
+}
+.type-radio {
+}
+.text {
+}
+.type-multi {
+    position: absolute;
+    display: flex;
+    top: 160px;
+    left: rem-calc(80);
+    z-index: 3;
+}
+
 .input-field {
 }
 #canvas{
