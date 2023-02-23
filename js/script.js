@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let varPriceStorageSingle = Boolean;
   let varPriceStorageHdd = Boolean;
   let varPriceStorageSsd = Boolean;
-  let newInputElements = [];
+  let newInputElements = inputElements;
   let rezultValue = "";
 
   ///// чекбоксы отлавливает и добавляем значение в общий массив
@@ -120,6 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
           value: i.value,
         }));
       };
+      renderChart(getData(newInputElements));
     });
   });
 
@@ -142,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
         inputTransfer: chartInputTransfer,
       }));
 
-      // console.log(newInputElements, "newInputElements");
+  
 
       newInputElements = InputElementsInner;
 
