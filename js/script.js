@@ -227,6 +227,10 @@ document.addEventListener("DOMContentLoaded", function () {
         name: i.name,
         value: i.value,
         color: i.color,
+        priceStorageHdd: varPriceStorageHdd,
+        priceStorageSsd: varPriceStorageSsd,
+        priceStorageMulti: varPriceStorageMulti,
+        priceStorageSingle: varPriceStorageSingle,
       }));
     };
   
