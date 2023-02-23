@@ -68,10 +68,10 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   // console.log(inputElements, "inputElements");
-  let varPriceStorageMulti = 1;
-  let varPriceStorageSingle = 0;
-  let varPriceStorageHdd = 1;
-  let varPriceStorageSsd = 0;
+  let varPriceStorageMulti = Boolean;
+  let varPriceStorageSingle = Boolean;
+  let varPriceStorageHdd = Boolean;
+  let varPriceStorageSsd = Boolean;
   let newInputElements = [];
   let rezultValue = "";
 
@@ -80,29 +80,35 @@ document.addEventListener("DOMContentLoaded", function () {
   radioType.forEach((el) => {
     el.addEventListener("change", (e) => {
       for (let i = 0; i < radioTypeSsd.length; i++) {
-        if (radioTypeSsd[i].checked && radioTypeSsd[i] == 0) {
+        if (radioTypeSsd[0].checked && radioTypeSsd[0].id == "typeHdd") {
           varPriceStorageHdd = true;
-        } else {
           varPriceStorageSsd = false;
         }
-        if (radioTypeSsd[i].checked && radioTypeSsd[i] == 1) {
-          varPriceStorageHdd = true;
-        } else {
-          varPriceStorageSsd = false;
+        if (radioTypeSsd[1].checked && radioTypeSsd[1].id == "typeSsd") {
+          varPriceStorageSsd = true;
+          varPriceStorageHdd = false;
         }
       }
       for (let i = 0; i < radioTypeMulti.length; i++) {
-        if (radioTypeMulti[i].checked && radioTypeSsd[i] == 0) {
+        if (radioTypeMulti[0].checked && radioTypeMulti[0].id == "typeMulti") {
           varPriceStorageMulti = true;
-        } else {
           varPriceStorageSingle = false;
         }
-        if (radioTypeMulti[i].checked && radioTypeSsd[i] == true) {
+        if (radioTypeMulti[1].checked && radioTypeMulti[1].id == "typeSingle") {
           varPriceStorageSingle = true;
-        } else {
           varPriceStorageMulti = false;
         }
       }
+      console.log(
+        varPriceStorageMulti,
+        "varPriceStorageMulti",
+        varPriceStorageSingle,
+        "varPriceStorageSingle",
+        varPriceStorageHdd,
+        "varPriceStorageHdd",
+        varPriceStorageSsd,
+        "varPriceStorageSsd"
+      );
       getData = (inputElements) => {
         return Array.from(inputElements).map((i, index) => ({
           priceStorageHdd: varPriceStorageHdd,
@@ -140,12 +146,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       newInputElements = InputElementsInner;
 
-      // newInputElements = InputElementsInner.map((elem) => ({
-      //   ...elem,
-      //   value: elem.inputStorage * elem.priceStorage + elem.inputTransfer * elem.priceTransfer,
-
-      // }));
-
       function resultValue(e) {
         return Array.from(e).map(function (i, index) {
           let sumValue =
@@ -154,49 +154,36 @@ document.addEventListener("DOMContentLoaded", function () {
           if (sumValue < i.minPayment && i.minPayment > 0 && !!i.minPayment) {
             sumValue = i.minPayment;
           }
-          if (
-            i.sumValue >= i.maxPayment &&
-            i.maxPayment > 0 &&
-            !!i.maxPayment
-          ) {
+          if (sumValue >= i.maxPayment && i.maxPayment > 0 && !!i.maxPayment) {
             sumValue = i.maxPayment;
           }
-          // if (sumValue < i.minPayment && i.minPayment > 0) {
-          //   sumValue = i.minPayment;
-          //   // console.log(
-          //   //   i.sumValue,
-          //   //   "sumValue inner  if( i.sumValue <  !!i.minPayment && i.minPayment > 0  )"
-          //   // );
-          // }
-          console.log(sumValue, "i.sumValue dddd", testValue, "testValue");
-          // if (i.sumValue > i.maxPayment && i.maxPayment > 0) {
-          //   i.sumValue = i.maxPayment;
-          //   console.log(
-          //     i.sumValue,
-          //     "sumValue inner  if(( sumValue > i.maxPayment) && ( i.maxPayment > 0 )"
-          //   );
-          // }
 
-          // if (!i.priceStorageHdd === true) {
-          //   (i.priceStorage = 0.01),
-          //     (i.sumValue =
-          //       i.inputStorage * i.priceStorage +
-          //       i.inputTransfer * i.priceTransfer);
-          //   console.log(
-          //     i.sumValue,
-          //     "sumValue inner  if (!i.priceStorageHdd === true)"
-          //   );
-          // }
-          // if (!i.priceStorageSsd === true) {
-          //   (i.priceStorage = 0.02),
-          //     (i.sumValue =
-          //       i.inputStorage * i.priceStorage +
-          //       i.inputTransfer * i.priceTransfer);
-          //   console.log(
-          //     i.sumValue,
-          //     "sumValue inner   if (!i.priceStorageSsd === true)"
-          //   );
-          // }
+          console.log(sumValue, "i.sumValue dddd", testValue, "testValue");
+
+          if (i.priceStorageHdd === true && !!i.priceStorageHdd) {
+            (i.priceStorage = 0.01),
+              (i.sumValue =
+                i.inputStorage * i.priceStorage +
+                i.inputTransfer * i.priceTransfer);
+            console.log(
+              inputElements,
+              "inputElements",
+              i.priceStorage,
+              "i.priceStorage"
+            );
+          }
+          if (i.priceStorageSsd === true && !!i.priceStorageSsd) {
+            (i.priceStorage = 0.02),
+              (i.sumValue =
+                i.inputStorage * i.priceStorage +
+                i.inputTransfer * i.priceTransfer);
+            console.log(
+              inputElements,
+              "inputElements",
+              i.priceStorage,
+              "i.priceStorage"
+            );
+          }
           // if (!i.priceStorageMulti === true) {
           //   if (i.inputStorage > 75) {
           //     i.priceStorage = 0.06;
