@@ -229,6 +229,7 @@ document.addEventListener("DOMContentLoaded", function () {
         color: i.color,
       }));
     };
+  
   });
 
   ///// and импуты storage и  transfer отлавливает и добавляем значение в общий массив
@@ -329,12 +330,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   renderChart(getData(inputElements));
 
-  // inputRange.forEach((el) => {
-  //   el.addEventListener("input", (e) => {
-  //     // console.log("inputRange.forEach end");
-  //     renderChart(getData(newInputElements));
-  //   });
-  // });
+  inputRange.forEach((el) => {
+    el.addEventListener("input", (e) => {
+      // console.log("inputRange.forEach end");
+      renderChart(getData(newInputElements));
+    });
+  });
   const formElement = document.querySelector(`.chart__data`);
 
   formElement.addEventListener(`submit`, (evt) => {
