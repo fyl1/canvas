@@ -1,8 +1,9 @@
 .chart {
-margin: 50px;
-border: 2px solid #000000;
-border-radius: 40px;
-padding: 30px;
+    margin: 50px;
+    border: 2px solid #000000;
+    border-radius: 40px;
+    padding: 30px;
+    box-sizing: border-box;
     // .chart__title
 
     &__title {
@@ -17,8 +18,7 @@ padding: 30px;
 
     // .chart__data
 
-    &__data {
-    }
+    &__data {}
 
     // .chart__input-group
 
@@ -40,7 +40,7 @@ padding: 30px;
     // .chart__label--num
 
     &__label--num {
-        span{
+        span {
             font-size: 20px;
             font-weight: 700;
         }
@@ -48,18 +48,15 @@ padding: 30px;
 
     // .chart__label--gb
 
-    &__label--gb {
-    }
+    &__label--gb {}
 
     // .chart__input
 
-    &__input {
-    }
+    &__input {}
 
     // .chart__submit-button
 
-    &__submit-button {
-    }
+    &__submit-button {}
 
     // .chart__canvas-wrapper
 
@@ -67,46 +64,96 @@ padding: 30px;
         position: relative;
     }
 }
-.chart-form__inner{
+
+.chart-form__inner {
+    width: 60vw;
     display: flex;
     justify-content: space-around;
 }
+
 .type-ssd {
     position: absolute;
     display: flex;
-    top: 140px;
-    left: rem-calc(115);
-    z-index: 3;
-}
-.checkbox {
-}
-.type-radio {
-}
-.text {
-}
-.type-multi {
-    position: absolute;
-    display: flex;
-    top: 200px;
-    left: rem-calc(115);
+    top: 12vh;
+    left: 10vw;
     z-index: 3;
 }
 
-.input-field {
+.checkbox {}
+
+.type-radio {}
+
+.text {}
+
+.type-multi {
+    position: absolute;
+    display: flex;
+
+    top: 18vh;
+    left: 10vw;
+
+    z-index: 3;
 }
-#canvas{
+
+.input-field {}
+
+#canvas {
     width: 60vw;
     height: auto;
     max-width: rem-calc(1500);
     transform: rotate(180deg);
     margin: 40px;
 }
-.chart-footer{
+
+.chart-footer {
     width: calc(100% + 15px);
     display: flex;
     justify-content: space-between;
     margin-top: rem-calc(10);
-    span{
+
+    span {
         font-size: 20px;
+    }
+}
+
+@media (max-width: 991px) {
+    #canvas {
+        width: 80vw;
+        height: auto;
+        max-width: rem-calc(1500);
+        transform: rotate(90deg);
+        // margin: 40px;
+        // margin-bottom: 20vh;
+        margin: 0;
+    }
+.chart-form__inner{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.chart__canvas-wrapper {
+    margin-bottom: 20vh;
+}
+.chart__input-group{
+    margin-bottom: 40px;
+}
+    .chart-form {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .checkbox .text {
+        font-size: 12px;
+    }
+
+    .type-ssd {
+        top: 30vh;
+        left: 23vw;
+    }
+
+    .type-multi {
+        top: 34vh;
+        left: 22vw;
     }
 }

@@ -173,6 +173,8 @@ a {
   border: 2px solid #000000;
   border-radius: 40px;
   padding: 30px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .chart__title {
@@ -217,6 +219,7 @@ a {
 }
 
 .chart-form__inner {
+  width: 60vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -229,8 +232,8 @@ a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  top: 140px;
-  left: 7.1875rem;
+  top: 12vh;
+  left: 10vw;
   z-index: 3;
 }
 
@@ -239,8 +242,8 @@ a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  top: 200px;
-  left: 7.1875rem;
+  top: 18vh;
+  left: 10vw;
   z-index: 3;
 }
 
@@ -266,6 +269,58 @@ a {
 
 .chart-footer span {
   font-size: 20px;
+}
+
+@media (max-width: 991px) {
+  #canvas {
+    width: 80vw;
+    height: auto;
+    max-width: 93.75rem;
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+    margin: 0;
+  }
+  .chart-form__inner {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .chart__canvas-wrapper {
+    margin-bottom: 20vh;
+  }
+  .chart__input-group {
+    margin-bottom: 40px;
+  }
+  .chart-form {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+  .checkbox .text {
+    font-size: 12px;
+  }
+  .type-ssd {
+    top: 30vh;
+    left: 23vw;
+  }
+  .type-multi {
+    top: 34vh;
+    left: 22vw;
+  }
 }
 
 input[type=range] {
