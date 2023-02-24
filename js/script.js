@@ -73,6 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let varPriceStorageHdd = Boolean;
   let varPriceStorageSsd = Boolean;
   let newInputElements = [];
+  let newInputElements2 = [];
   let rezultValue = "";
 
   ///// чекбоксы отлавливает и добавляем значение в общий массив
@@ -83,23 +84,50 @@ document.addEventListener("DOMContentLoaded", function () {
         if (radioTypeSsd[0].checked && radioTypeSsd[0].id == "typeHdd") {
           varPriceStorageHdd = true;
           varPriceStorageSsd = false;
+          inputElements.forEach((el) => {
+            if (el.hasOwnProperty("priceStorageHdd")) {
+              el.priceStorageHdd = true;
+              el.priceStorageSsd = false;
+            }
+          });
         }
         if (radioTypeSsd[1].checked && radioTypeSsd[1].id == "typeSsd") {
           varPriceStorageSsd = true;
           varPriceStorageHdd = false;
+          inputElements.forEach((el) => {
+            if (el.hasOwnProperty("priceStorageHdd")) {
+              el.priceStorageHdd = false;
+              el.priceStorageSsd = true;
+            }
+          });
         }
       }
       for (let i = 0; i < radioTypeMulti.length; i++) {
         if (radioTypeMulti[0].checked && radioTypeMulti[0].id == "typeMulti") {
           varPriceStorageMulti = true;
           varPriceStorageSingle = false;
+          inputElements.forEach((el) => {
+            if (el.hasOwnProperty("priceStorageMulti")) {
+              el.priceStorageMulti = true;
+              el.priceStorageSingle = false;
+            }
+          });
         }
         if (radioTypeMulti[1].checked && radioTypeMulti[1].id == "typeSingle") {
           varPriceStorageSingle = true;
           varPriceStorageMulti = false;
+          inputElements.forEach((el) => {
+            if (el.hasOwnProperty("priceStorageMulti")) {
+              el.priceStorageMulti = false;
+              el.priceStorageSingle = true;
+            }
+          });
         }
       }
+      renderChart(getData(inputElements));
       console.log(
+        newInputElements2,
+        "newInputElements2",
         varPriceStorageMulti,
         "varPriceStorageMulti",
         varPriceStorageSingle,
@@ -107,20 +135,9 @@ document.addEventListener("DOMContentLoaded", function () {
         varPriceStorageHdd,
         "varPriceStorageHdd",
         varPriceStorageSsd,
-        "varPriceStorageSsd", 'консолька в блоке с чекбоксами'
+        "varPriceStorageSsd",
+        "консолька в блоке с чекбоксами"
       );
-      getData = (InputElements) => {
-        return Array.from(InputElements).map((i, index) => ({
-          priceStorageHdd: varPriceStorageHdd,
-          priceStorageSsd: varPriceStorageSsd,
-          priceStorageMulti: varPriceStorageMulti,
-          priceStorageSingle: varPriceStorageSingle,
-          name: i.name,
-          color: i.color,
-          value: i.value,
-        }));
-      };
-      renderChart(getData(newInputElements));
     });
   });
 
@@ -137,15 +154,16 @@ document.addEventListener("DOMContentLoaded", function () {
         `.chart__input--transfer`
       ).value;
 
-      let InputElementsInner = inputElements.map((elem) => ({
-        ...elem,
-        inputStorage: chartInputStorage,
-        inputTransfer: chartInputTransfer,
-      }));
-
-  
-
-      newInputElements = InputElementsInner;
+      // let InputElementsInner = inputElements.map((elem) => ({
+      //   ...elem,
+      //   inputStorage: chartInputStorage,
+      //   inputTransfer: chartInputTransfer,
+      // }));
+      inputElements.forEach((el) => {
+        el.inputStorage = chartInputStorage,
+        el.inputTransfer = chartInputTransfer
+      });
+      // newInputElements = InputElementsInner;
 
       function resultValue(e) {
         return Array.from(e).map(function (i, index) {
@@ -159,7 +177,13 @@ document.addEventListener("DOMContentLoaded", function () {
             sumValue = i.maxPayment;
           }
 
-          console.log(sumValue, "i.sumValue dddd", testValue, "testValue", 'консолька в блоке с resultValue там где все считаеться');
+          console.log(
+            sumValue,
+            "i.sumValue dddd",
+            testValue,
+            "testValue",
+            "консолька в блоке с resultValue там где все считаеться"
+          );
 
           if (i.priceStorageHdd === true && !!i.priceStorageHdd) {
             (i.priceStorage = 0.01),
@@ -170,7 +194,9 @@ document.addEventListener("DOMContentLoaded", function () {
               inputElements,
               "inputElements",
               i.priceStorage,
-              "i.priceStorage", 'консолька в блоке с resultValue иф что проверяет priceStorageHdd ',i.priceStorageHdd
+              "i.priceStorage",
+              "консолька в блоке с resultValue иф что проверяет priceStorageHdd ",
+              i.priceStorageHdd
             );
           }
           if (i.priceStorageSsd === true && !!i.priceStorageSsd) {
@@ -182,7 +208,9 @@ document.addEventListener("DOMContentLoaded", function () {
               inputElements,
               "inputElements",
               i.priceStorage,
-              "i.priceStorage", 'консолька в блоке с resultValue иф что проверяет priceStorageSsd', i.priceStorageSsd
+              "i.priceStorage",
+              "консолька в блоке с resultValue иф что проверяет priceStorageSsd",
+              i.priceStorageSsd
             );
           }
           // if (!i.priceStorageMulti === true) {
@@ -218,12 +246,12 @@ document.addEventListener("DOMContentLoaded", function () {
           return (i.value = sumValue.toFixed(2));
         });
       }
-      console.log(newInputElements, "newInputElements sumValue");
-      resultValue(newInputElements);
+      console.log(inputElements, "inputElements sumValue");
+      resultValue(inputElements);
     });
 
-    getData = (newInputElements) => {
-      return Array.from(newInputElements).map((i, index) => ({
+    getData = (inputElements) => {
+      return Array.from(inputElements).map((i, index) => ({
         name: i.name,
         value: i.value,
         color: i.color,
@@ -233,7 +261,6 @@ document.addEventListener("DOMContentLoaded", function () {
         priceStorageSingle: varPriceStorageSingle,
       }));
     };
-  
   });
 
   ///// and импуты storage и  transfer отлавливает и добавляем значение в общий массив
@@ -246,9 +273,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   ///// рисуем график
 
- 
-  const items = getData(newInputElements);
-  console.log(items, "items", 'консолька в начале функции канваса,  показивает что на входе приходит');
+  const items = getData(inputElements);
+  console.log(
+    items,
+    "items",
+    "консолька в начале функции канваса,  показивает что на входе приходит"
+  );
   const MAX_PERCENTAGE = 50;
 
   const Gap = {
@@ -313,8 +343,11 @@ document.addEventListener("DOMContentLoaded", function () {
         LabelCoordinate.INITIAL_X,
         currentLabelY
       );
-      ctx.fillText( `${item.value} $`, LabelCoordinate.INITIAL_X + barHeight  + 200,
-        currentLabelY)
+      ctx.fillText(
+        `${item.value} $`,
+        LabelCoordinate.INITIAL_X + barHeight + 200,
+        currentLabelY
+      );
       // Возвращаемся к изначальной системе координат
       ctx.restore();
       // Рисуем столбец
@@ -339,7 +372,7 @@ document.addEventListener("DOMContentLoaded", function () {
   inputRange.forEach((el) => {
     el.addEventListener("input", (e) => {
       // console.log("inputRange.forEach end");
-      renderChart(getData(newInputElements));
+      renderChart(getData(inputElements));
     });
   });
   const formElement = document.querySelector(`.chart__data`);
@@ -349,7 +382,7 @@ document.addEventListener("DOMContentLoaded", function () {
     evt.preventDefault();
 
     // Отрисовываем график
-    renderChart(getData(newInputElements));
+    renderChart(getData(inputElements));
     // Сбрасываем значения полей ввода
     formElement.reset();
   });
