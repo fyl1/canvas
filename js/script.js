@@ -124,20 +124,20 @@ document.addEventListener("DOMContentLoaded", function () {
           });
         }
       }
-      renderChart(getData(inputElements));
-      console.log(
-        newInputElements2,
-        "newInputElements2",
-        varPriceStorageMulti,
-        "varPriceStorageMulti",
-        varPriceStorageSingle,
-        "varPriceStorageSingle",
-        varPriceStorageHdd,
-        "varPriceStorageHdd",
-        varPriceStorageSsd,
-        "varPriceStorageSsd",
-        "консолька в блоке с чекбоксами"
-      );
+      resultValue(renderChart(getData(inputElements)));
+      // console.log(
+      //   inputElements,
+      //   "inputElements",
+      //   varPriceStorageMulti,
+      //   "varPriceStorageMulti",
+      //   varPriceStorageSingle,
+      //   "varPriceStorageSingle",
+      //   varPriceStorageHdd,
+      //   "varPriceStorageHdd",
+      //   varPriceStorageSsd,
+      //   "varPriceStorageSsd",
+      //   "консолька в блоке с чекбоксами"
+      // );
     });
   });
 
@@ -154,102 +154,12 @@ document.addEventListener("DOMContentLoaded", function () {
         `.chart__input--transfer`
       ).value;
 
-      // let InputElementsInner = inputElements.map((elem) => ({
-      //   ...elem,
-      //   inputStorage: chartInputStorage,
-      //   inputTransfer: chartInputTransfer,
-      // }));
       inputElements.forEach((el) => {
-        el.inputStorage = chartInputStorage,
-        el.inputTransfer = chartInputTransfer
+        (el.inputStorage = chartInputStorage),
+          (el.inputTransfer = chartInputTransfer);
       });
-      // newInputElements = InputElementsInner;
-
-      function resultValue(e) {
-        return Array.from(e).map(function (i, index) {
-          let sumValue =
-            i.inputStorage * i.priceStorage + i.inputTransfer * i.priceTransfer;
-          let testValue = 0;
-          if (sumValue < i.minPayment && i.minPayment > 0 && !!i.minPayment) {
-            sumValue = i.minPayment;
-          }
-          if (sumValue >= i.maxPayment && i.maxPayment > 0 && !!i.maxPayment) {
-            sumValue = i.maxPayment;
-          }
-
-          console.log(
-            sumValue,
-            "i.sumValue dddd",
-            testValue,
-            "testValue",
-            "консолька в блоке с resultValue там где все считаеться"
-          );
-
-          if (i.priceStorageHdd === true && !!i.priceStorageHdd) {
-            (i.priceStorage = 0.01),
-              (i.sumValue =
-                i.inputStorage * i.priceStorage +
-                i.inputTransfer * i.priceTransfer);
-            console.log(
-              inputElements,
-              "inputElements",
-              i.priceStorage,
-              "i.priceStorage",
-              "консолька в блоке с resultValue иф что проверяет priceStorageHdd ",
-              i.priceStorageHdd
-            );
-          }
-          if (i.priceStorageSsd === true && !!i.priceStorageSsd) {
-            (i.priceStorage = 0.02),
-              (i.sumValue =
-                i.inputStorage * i.priceStorage +
-                i.inputTransfer * i.priceTransfer);
-            console.log(
-              inputElements,
-              "inputElements",
-              i.priceStorage,
-              "i.priceStorage",
-              "консолька в блоке с resultValue иф что проверяет priceStorageSsd",
-              i.priceStorageSsd
-            );
-          }
-          // if (!i.priceStorageMulti === true) {
-          //   if (i.inputStorage > 75) {
-          //     i.priceStorage = 0.06;
-          //   } else {
-          //     i.priceStorage = 0;
-          //   }
-          //   i.sumValue =
-          //     i.inputStorage * i.priceStorage +
-          //     i.inputTransfer * i.priceTransfer;
-          //   console.log(
-          //     i.sumValue,
-          //     "sumValue inner    if (!i.priceStorageMulti === true) {"
-          //   );
-          // }
-          // if (!i.priceStorageSingle === true) {
-          //   if (i.inputStorage > 75) {
-          //     i.priceStorage = 0.03;
-          //   } else {
-          //     i.priceStorage = 0;
-          //   }
-          //   i.sumValue =
-          //     i.inputStorage * i.priceStorage +
-          //     i.inputTransfer * i.priceTransfer;
-          //   console.log(
-          //     i.sumValue,
-          //     "sumValue inner  if (!i.priceStorageSingle === true) {"
-          //   );
-          // }
-          // console.log(i.sumValue, "sumValue");
-          // return (i.value = i.sumValue);
-          return (i.value = sumValue.toFixed(2));
-        });
-      }
-      console.log(inputElements, "inputElements sumValue");
-      resultValue(inputElements);
+      // resultValue();
     });
-
     getData = (inputElements) => {
       return Array.from(inputElements).map((i, index) => ({
         name: i.name,
@@ -262,6 +172,60 @@ document.addEventListener("DOMContentLoaded", function () {
       }));
     };
   });
+  function resultValue(inputElements) {
+    return Array.from(inputElements).map(function (i, index) {
+      let sumValue =
+        i.inputStorage * i.priceStorage + i.inputTransfer * i.priceTransfer;
+      let testValue = 0;
+      if (sumValue < i.minPayment && i.minPayment > 0 && !!i.minPayment) {
+        sumValue = i.minPayment;
+      }
+      if (sumValue >= i.maxPayment && i.maxPayment > 0 && !!i.maxPayment) {
+        sumValue = i.maxPayment;
+      }
+
+      if (i.priceStorageHdd === true && !!i.priceStorageHdd) {
+        (i.priceStorage = 0.01),
+          (i.sumValue =
+            i.inputStorage * i.priceStorage +
+            i.inputTransfer * i.priceTransfer);
+      }
+      if (i.priceStorageSsd === true && !!i.priceStorageSsd) {
+        (i.priceStorage = 0.02),
+          (i.sumValue =
+            i.inputStorage * i.priceStorage +
+            i.inputTransfer * i.priceTransfer);
+      }
+      if (i.priceStorageMulti === true && !!i.priceStorageMulti) {
+        if (i.inputStorage > 75) {
+          i.priceStorage = 0.06;
+        } else {
+          i.priceStorage = 0;
+        }
+        i.sumValue =
+          i.inputStorage * i.priceStorage + i.inputTransfer * i.priceTransfer;
+      }
+      if (i.priceStorageSingle === true && !!i.priceStorageSingle) {
+        if (i.inputStorage > 75) {
+          i.priceStorage = 0.03;
+        } else {
+          i.priceStorage = 0;
+        }
+        i.sumValue =
+          i.inputStorage * i.priceStorage + i.inputTransfer * i.priceTransfer;
+      }
+      if (!!i.priceStorageSingle || !!i.priceStorageMulti) {
+        if (i.inputStorage > 75) {
+          i.inputTransfer = 0.02;
+        } else {
+          i.inputTransfer = 0;
+        }
+      }
+      // console.log(i.sumValue, "sumValue");
+      // return (i.value = i.sumValue);
+      return (i.value = sumValue.toFixed(2));
+    });
+  }
 
   ///// and импуты storage и  transfer отлавливает и добавляем значение в общий массив
 
