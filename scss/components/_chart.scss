@@ -1,8 +1,12 @@
 .chart {
-
+margin: 50px;
+border: 2px solid #000000;
+border-radius: 40px;
+padding: 30px;
     // .chart__title
 
     &__title {
+        margin-bottom: 30px;
     }
 
     // .chart__inner
@@ -19,16 +23,27 @@
     // .chart__input-group
 
     &__input-group {
+        max-width: 200px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
     }
 
     // .chart__label
 
     &__label {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: rem-calc(20);
     }
 
     // .chart__label--num
 
     &__label--num {
+        span{
+            font-size: 20px;
+            font-weight: 700;
+        }
     }
 
     // .chart__label--gb
@@ -52,11 +67,15 @@
         position: relative;
     }
 }
+.chart-form__inner{
+    display: flex;
+    justify-content: space-around;
+}
 .type-ssd {
     position: absolute;
     display: flex;
-    top: 100px;
-    left: rem-calc(80);
+    top: 140px;
+    left: rem-calc(115);
     z-index: 3;
 }
 .checkbox {
@@ -68,8 +87,8 @@
 .type-multi {
     position: absolute;
     display: flex;
-    top: 160px;
-    left: rem-calc(80);
+    top: 200px;
+    left: rem-calc(115);
     z-index: 3;
 }
 
@@ -80,4 +99,14 @@
     height: auto;
     max-width: rem-calc(1500);
     transform: rotate(180deg);
+    margin: 40px;
+}
+.chart-footer{
+    width: calc(100% + 15px);
+    display: flex;
+    justify-content: space-between;
+    margin-top: rem-calc(10);
+    span{
+        font-size: 20px;
+    }
 }

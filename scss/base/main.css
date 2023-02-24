@@ -168,14 +168,60 @@ a {
   }
 }
 
+.chart {
+  margin: 50px;
+  border: 2px solid #000000;
+  border-radius: 40px;
+  padding: 30px;
+}
+
+.chart__title {
+  margin-bottom: 30px;
+}
+
 .chart__inner {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
+.chart__input-group {
+  max-width: 200px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.chart__label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-bottom: 1.25rem;
+}
+
+.chart__label--num span {
+  font-size: 20px;
+  font-weight: 700;
+}
+
 .chart__canvas-wrapper {
   position: relative;
+}
+
+.chart-form__inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .type-ssd {
@@ -183,8 +229,8 @@ a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  top: 100px;
-  left: 5rem;
+  top: 140px;
+  left: 7.1875rem;
   z-index: 3;
 }
 
@@ -193,8 +239,8 @@ a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  top: 160px;
-  left: 5rem;
+  top: 200px;
+  left: 7.1875rem;
   z-index: 3;
 }
 
@@ -204,5 +250,123 @@ a {
   max-width: 93.75rem;
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
+  margin: 40px;
+}
+
+.chart-footer {
+  width: calc(100% + 15px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 0.625rem;
+}
+
+.chart-footer span {
+  font-size: 20px;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 100%;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4.8px;
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+          box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  background: #000000;
+  border-radius: 25px;
+  border: 0px solid #000101;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+          box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border: 0px solid #000000;
+  height: 40px;
+  width: 19px;
+  border-radius: 0px;
+  background: #000000;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -16.6px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #000000;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 60px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  background: #000000;
+  border-radius: 25px;
+  border: 0px solid #000101;
+}
+
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border: 0px solid #000000;
+  height: 60px;
+  width: 39px;
+  border-radius: 7px;
+  background: #000000;
+  cursor: pointer;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 4.8px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  border-width: 39px 0;
+  color: transparent;
+}
+
+input[type=range]::-ms-fill-lower {
+  background: #000000;
+  border: 0px solid #000101;
+  border-radius: 50px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+
+input[type=range]::-ms-fill-upper {
+  background: #000000;
+  border: 0px solid #000101;
+  border-radius: 50px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+
+input[type=range]::-ms-thumb {
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border: 0px solid #000000;
+  height: 60px;
+  width: 39px;
+  border-radius: 7px;
+  background: #000000;
+  cursor: pointer;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+  background: #000000;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+  background: #000000;
 }
 /*# sourceMappingURL=main.css.map */

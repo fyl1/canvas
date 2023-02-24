@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
     "input[type=radio][name=type-multi]"
   );
 
-
   //   const inputElements = document.querySelectorAll(`.chart__input`);
   const inputElements = [
     {
@@ -24,12 +23,12 @@ document.addEventListener("DOMContentLoaded", function () {
       priceTransfer: 0.01,
       inputStorage: "",
       inputTransfer: "",
-     
     },
+    
     {
       name: "bunny",
       value: "1",
-      color: "red",
+      color: "orange",
       minPayment: "",
       maxPayment: "",
       priceStorage: "",
@@ -38,12 +37,11 @@ document.addEventListener("DOMContentLoaded", function () {
       inputTransfer: "",
       priceStorageHdd: true,
       priceStorageSsd: false,
- 
     },
     {
       name: "scaleway",
       value: "1",
-      color: "red",
+      color: "violet",
       minPayment: "",
       maxPayment: "",
       priceStorage: "",
@@ -52,19 +50,17 @@ document.addEventListener("DOMContentLoaded", function () {
       inputTransfer: "",
       priceStorageMulti: true,
       priceStorageSingle: false,
-  
     },
     {
       name: "vultr",
       value: "1",
-      color: "red",
+      color: "blue",
       minPayment: 5,
       maxPayment: "",
       priceStorage: 0.01,
       priceTransfer: 0.01,
       inputStorage: "",
       inputTransfer: "",
-    
     },
   ];
 
@@ -75,8 +71,6 @@ document.addEventListener("DOMContentLoaded", function () {
   let newInputElements = [];
   let newInputElements2 = [];
   let rezultValue = "";
-
-
 
   ///// чекбоксы отлавливает и добавляем значение в общий массив
 
@@ -128,7 +122,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       resultValue(inputElements);
       renderChart(getData(inputElements));
-
     });
   });
 
@@ -144,14 +137,21 @@ document.addEventListener("DOMContentLoaded", function () {
       const chartInputTransfer = document.querySelector(
         `.chart__input--transfer`
       ).value;
+      const textInputStorage = document.querySelector(`.chart__label--storage`);
+      const textInputTransfer = document.querySelector(
+        `.chart__label--transfer`
+      );
+
       inputElements.forEach((el) => {
         el.inputStorage = chartInputStorage;
-          el.inputTransfer = chartInputTransfer;
+        el.inputTransfer = chartInputTransfer;
       });
 
-     
+      textInputStorage.innerText = chartInputStorage;
+      textInputTransfer.innerText = chartInputTransfer;
+
       resultValue(inputElements);
-      console.log(inputElements, "inputElements")
+      console.log(inputElements, "inputElements");
       renderChart(getData(inputElements));
     });
     getData = (inputElements) => {
@@ -160,17 +160,14 @@ document.addEventListener("DOMContentLoaded", function () {
         value: i.value,
         color: i.color,
       }));
-      
     };
-    
   });
 
-  
   function resultValue(inputElements) {
     return Array.from(inputElements).map(function (i, index) {
       let sumValue =
         i.inputStorage * i.priceStorage + i.inputTransfer * i.priceTransfer;
-     
+
       if (sumValue < i.minPayment && i.minPayment > 0 && !!i.minPayment) {
         sumValue = i.minPayment;
       }
@@ -197,7 +194,8 @@ document.addEventListener("DOMContentLoaded", function () {
           i.priceStorage = 0;
         }
         sumValue =
-        ( i.inputStorage -75) * i.priceStorage + (i.inputTransfer - 75) * i.priceTransfer;
+          (i.inputStorage - 75) * i.priceStorage +
+          (i.inputTransfer - 75) * i.priceTransfer;
       }
       if (i.priceStorageSingle === true && !!i.priceStorageSingle) {
         if (i.inputStorage > 75) {
@@ -206,7 +204,8 @@ document.addEventListener("DOMContentLoaded", function () {
           i.priceStorage = 0;
         }
         sumValue =
-        ( i.inputStorage -75) * i.priceStorage + (i.inputTransfer - 75) * i.priceTransfer;
+          (i.inputStorage - 75) * i.priceStorage +
+          (i.inputTransfer - 75) * i.priceTransfer;
       }
       if (!!i.priceStorageSingle || !!i.priceStorageMulti) {
         if (i.inputStorage > 75) {
@@ -215,18 +214,16 @@ document.addEventListener("DOMContentLoaded", function () {
           i.priceTransfer = 0;
         }
         sumValue =
-       ( i.inputStorage -75) * i.priceStorage + (i.inputTransfer - 75) * i.priceTransfer;
+          (i.inputStorage - 75) * i.priceStorage +
+          (i.inputTransfer - 75) * i.priceTransfer;
       }
-      console.log(sumValue, "sumValue", inputElements, "inputElements" );
+      console.log(sumValue, "sumValue", inputElements, "inputElements");
       // return (i.value = i.sumValue);
       return (i.value = sumValue.toFixed(2));
     });
   }
 
-
-
   const items = getData(inputElements);
-;
   const MAX_PERCENTAGE = 130;
 
   const Gap = {
@@ -296,6 +293,16 @@ document.addEventListener("DOMContentLoaded", function () {
         LabelCoordinate.INITIAL_X + barHeight + 200,
         currentLabelY
       );
+      // рисуем линию
+      ctx.beginPath();
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = '#000000';
+      ctx.moveTo(-72, -110);
+      ctx.lineTo(-70, 180);
+      ctx.stroke();
+
+
+
       // Возвращаемся к изначальной системе координат
       ctx.restore();
       // Рисуем столбец
@@ -315,7 +322,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   ///// and  рисуем график
 
-  // renderChart(getData(inputElements));
+  renderChart(getData(inputElements));
 
   // inputRange.forEach((el) => {
   //   el.addEventListener("input", (e) => {

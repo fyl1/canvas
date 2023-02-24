@@ -2,7 +2,7 @@
 <html class="" lang="ru">
   <head>
     <meta charset="utf-8" />
-    <title>grisha paramonov</title>
+    <title>Калькулятор на канвасе</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="format-detection" content="telephone=no" />
@@ -13,81 +13,114 @@
   </head>
   <body class="body">
     <main class="main" role="main" style="overflow: hidden">
-      <!-- <canvas id="canvas"></canvas> -->
-
       <section class="chart">
-        <h1 class="chart__title">oooooo</h1>
+        <h1 class="chart__title">Калькулятор на канвасе</h1>
         <div class="chart__inner">
-          <form class="chart__data" action="#" method="POST">
-            <div class="chart__input-group">
-              <label class="chart__label" for="Storage"
-                >Storage
-                <span class="chart__label--num"></span>
-                <span class="chart__label--gb">GB</span></label
-              >
-              <input
-                class="chart__input chart__input--storage input-field"
-                type="range"
-                name="Storage"
-                id="Storage"
-                min="0"
-                max="1000"
-                value="0"
-                required
-              />
-            </div>
-            <div class="chart__input-group">
-              <label class="chart__label" for="Transfer"
-                >Transfer
-                <span class="chart__label--num"> </span>
-                <span class="chart__label--gb">GB</span>
-              </label>
-              <input
-                class="chart__input chart__input--transfer input-field"
-                type="range"
-                name="Transfer"
-                id="Transfer"
-                min="0"
-                max="1000"
-                value="0"
-                required
-              />
-            </div>
-            <!-- Остальные поля ввода: PHP и Python -->
-
-            <input
+          <form class="chart-form" action="#" method="POST">
+            <div class="chart-form__inner">
+              <div class="chart__input-group">
+                <label class="chart__label" for="Storage"
+                  >Storage
+                  <span class="chart__label--num"
+                    ><span class="chart__label--storage"></span>
+                    <span class="chart__label--gb">GB</span>
+                    </span
+                  >
+                </label>
+                <input
+                  class="chart__input chart__input--storage input-field"
+                  type="range"
+                  name="Storage"
+                  id="Storage"
+                  min="0"
+                  max="1000"
+                  value="0"
+                  required
+                />
+                <span class="chart-footer">
+                  <span>0</span>
+                  <span>1000</span>
+                </span>
+              </div>
+              <div class="chart__input-group">
+                <label class="chart__label" for="Transfer"
+                  >Transfer
+                  <span class="chart__label--num">
+                    <span class="chart__label--transfer"> </span>
+                    <span class="chart__label--gb">GB</span>
+                    </span
+                  >
+                </label>
+                <input
+                  class="chart__input chart__input--transfer input-field"
+                  type="range"
+                  name="Transfer"
+                  id="Transfer"
+                  min="0"
+                  max="1000"
+                  value="0"
+                  required
+                />
+                <span class="chart-footer">
+                  <span>0</span>
+                  <span>1000</span>
+                </span>
+              </div>
+              <!-- Остальные поля ввода: PHP и Python -->
+              <!-- ну в форме ж нада кнопка:) 
+             <input
               class="chart__submit-button input-field"
               type="submit"
-              value="Показать график"
-            />
+            value="Показать график" />-->
+            </div>
+            <div class="chart__canvas-wrapper">
+              <div class="type-ssd">
+                <div class="checkbox">
+                  <input
+                    type="radio"
+                    class="type-radio"
+                    checked
+                    name="type-ssd"
+                    id="typeHdd"
+                  />
+                  <label for="typeHdd" class="text"> HDD </label>
+                </div>
+                <div class="checkbox">
+                  <input
+                    type="radio"
+                    class="type-radio"
+                    name="type-ssd"
+                    id="typeSsd"
+                  />
+                  <label for="typeSsd" class="text"> SSD </label>
+                </div>
+              </div>
+              <div class="type-multi">
+                <div class="checkbox">
+                  <input
+                    type="radio"
+                    class="type-radio"
+                    checked
+                    name="type-multi"
+                    id="typeMulti"
+                  />
+                  <label for="typeMulti" class="text"> Multi </label>
+                </div>
+                <div class="checkbox">
+                  <input
+                    type="radio"
+                    class="type-radio"
+                    name="type-multi"
+                    id="typeSingle"
+                  />
+                  <label for="typeSingle" class="text"> Single </label>
+                </div>
+              </div>
+              <canvas id="canvas" width="500" height="250">
+                Браузер не поддерживает Canvas
+              </canvas>
+            </div>
           </form>
-          
-        
-          <div class="chart__canvas-wrapper">
-            <div class="type-ssd">
-              <div class="checkbox">
-                <input type="radio" class="type-radio" checked name="type-ssd" id="typeHdd" />
-                <label for="typeHdd" class="text"> HDD </label>
-              </div>
-              <div class="checkbox">
-                <input type="radio" class="type-radio" name="type-ssd" id="typeSsd" />
-                <label for="typeSsd" class="text"> SSD </label>
-              </div>
-            </div>
-            <div class="type-multi">
-              <div class="checkbox">
-                <input type="radio" class="type-radio" checked name="type-multi" id="typeMulti" />
-                <label for="typeMulti" class="text"> Multi </label>
-              </div>
-              <div class="checkbox">
-                <input type="radio" class="type-radio" name="type-multi" id="typeSingle" />
-                <label for="typeSingle" class="text"> Single </label>
-              </div>
-            </div>
-            <canvas id="canvas" width="500" height="250">
-              Браузер не поддерживает Canvas
-            </canvas>
-          </div>
         </div>
       </section>
     </main>
