@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "input[type=radio][name=type-multi]"
   );
 
+
   //   const inputElements = document.querySelectorAll(`.chart__input`);
   const inputElements = [
     {
@@ -23,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
       priceTransfer: 0.01,
       inputStorage: "",
       inputTransfer: "",
-      sumValue: "",
+     
     },
     {
       name: "bunny",
@@ -37,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
       inputTransfer: "",
       priceStorageHdd: true,
       priceStorageSsd: false,
-      sumValue: "",
+ 
     },
     {
       name: "scaleway",
@@ -51,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
       inputTransfer: "",
       priceStorageMulti: true,
       priceStorageSingle: false,
-      sumValue: "",
+  
     },
     {
       name: "vultr",
@@ -63,11 +64,10 @@ document.addEventListener("DOMContentLoaded", function () {
       priceTransfer: 0.01,
       inputStorage: "",
       inputTransfer: "",
-      sumValue: "",
+    
     },
   ];
 
-  // console.log(inputElements, "inputElements");
   let varPriceStorageMulti = Boolean;
   let varPriceStorageSingle = Boolean;
   let varPriceStorageHdd = Boolean;
@@ -75,6 +75,8 @@ document.addEventListener("DOMContentLoaded", function () {
   let newInputElements = [];
   let newInputElements2 = [];
   let rezultValue = "";
+
+
 
   ///// чекбоксы отлавливает и добавляем значение в общий массив
 
@@ -127,19 +129,6 @@ document.addEventListener("DOMContentLoaded", function () {
       resultValue(inputElements);
       renderChart(getData(inputElements));
 
-      // console.log(
-      //   inputElements,
-      //   "inputElements",
-      //   varPriceStorageMulti,
-      //   "varPriceStorageMulti",
-      //   varPriceStorageSingle,
-      //   "varPriceStorageSingle",
-      //   varPriceStorageHdd,
-      //   "varPriceStorageHdd",
-      //   varPriceStorageSsd,
-      //   "varPriceStorageSsd",
-      //   "консолька в блоке с чекбоксами"
-      // );
     });
   });
 
@@ -155,11 +144,12 @@ document.addEventListener("DOMContentLoaded", function () {
       const chartInputTransfer = document.querySelector(
         `.chart__input--transfer`
       ).value;
-
       inputElements.forEach((el) => {
-        (el.inputStorage = chartInputStorage),
-          (el.inputTransfer = chartInputTransfer);
+        el.inputStorage = chartInputStorage;
+          el.inputTransfer = chartInputTransfer;
       });
+
+     
       resultValue(inputElements);
       console.log(inputElements, "inputElements")
       renderChart(getData(inputElements));
@@ -180,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return Array.from(inputElements).map(function (i, index) {
       let sumValue =
         i.inputStorage * i.priceStorage + i.inputTransfer * i.priceTransfer;
-      let testValue = 0;
+     
       if (sumValue < i.minPayment && i.minPayment > 0 && !!i.minPayment) {
         sumValue = i.minPayment;
       }
@@ -190,13 +180,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (i.priceStorageHdd === true && !!i.priceStorageHdd) {
         (i.priceStorage = 0.01),
-          (i.sumValue =
+          (sumValue =
             i.inputStorage * i.priceStorage +
             i.inputTransfer * i.priceTransfer);
       }
       if (i.priceStorageSsd === true && !!i.priceStorageSsd) {
         (i.priceStorage = 0.02),
-          (i.sumValue =
+          (sumValue =
             i.inputStorage * i.priceStorage +
             i.inputTransfer * i.priceTransfer);
       }
@@ -206,8 +196,8 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
           i.priceStorage = 0;
         }
-        i.sumValue =
-          i.inputStorage * i.priceStorage + i.inputTransfer * i.priceTransfer;
+        sumValue =
+        ( i.inputStorage -75) * i.priceStorage + (i.inputTransfer - 75) * i.priceTransfer;
       }
       if (i.priceStorageSingle === true && !!i.priceStorageSingle) {
         if (i.inputStorage > 75) {
@@ -215,39 +205,29 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
           i.priceStorage = 0;
         }
-        i.sumValue =
-          i.inputStorage * i.priceStorage + i.inputTransfer * i.priceTransfer;
+        sumValue =
+        ( i.inputStorage -75) * i.priceStorage + (i.inputTransfer - 75) * i.priceTransfer;
       }
       if (!!i.priceStorageSingle || !!i.priceStorageMulti) {
         if (i.inputStorage > 75) {
-          i.inputTransfer = 0.02;
+          i.priceTransfer = 0.02;
         } else {
-          i.inputTransfer = 0;
+          i.priceTransfer = 0;
         }
+        sumValue =
+       ( i.inputStorage -75) * i.priceStorage + (i.inputTransfer - 75) * i.priceTransfer;
       }
-      // console.log(i.sumValue, "sumValue");
+      console.log(sumValue, "sumValue", inputElements, "inputElements" );
       // return (i.value = i.sumValue);
       return (i.value = sumValue.toFixed(2));
     });
   }
 
-  ///// and импуты storage и  transfer отлавливает и добавляем значение в общий массив
 
-  // return Array.from(inputElements).map((i, index) => ({
-  //   name: i.name,
-  //   value: i.value,
-  //   color: i.color,
-  // }));
-
-  ///// рисуем график
 
   const items = getData(inputElements);
-  console.log(
-    items,
-    "items",
-    "консолька в начале функции канваса,  показивает что на входе приходит"
-  );
-  const MAX_PERCENTAGE = 50;
+;
+  const MAX_PERCENTAGE = 75;
 
   const Gap = {
     HORIZONTAL: 30,
