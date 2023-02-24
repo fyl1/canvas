@@ -227,7 +227,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const items = getData(inputElements);
 ;
-  const MAX_PERCENTAGE = 75;
+  const MAX_PERCENTAGE = 130;
 
   const Gap = {
     HORIZONTAL: 30,
