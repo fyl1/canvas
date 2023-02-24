@@ -124,7 +124,9 @@ document.addEventListener("DOMContentLoaded", function () {
           });
         }
       }
-      resultValue(renderChart(getData(inputElements)));
+      resultValue(inputElements);
+      renderChart(getData(inputElements));
+
       // console.log(
       //   inputElements,
       //   "inputElements",
@@ -158,20 +160,22 @@ document.addEventListener("DOMContentLoaded", function () {
         (el.inputStorage = chartInputStorage),
           (el.inputTransfer = chartInputTransfer);
       });
-      // resultValue();
+      resultValue(inputElements);
+      console.log(inputElements, "inputElements")
+      renderChart(getData(inputElements));
     });
     getData = (inputElements) => {
       return Array.from(inputElements).map((i, index) => ({
         name: i.name,
         value: i.value,
         color: i.color,
-        priceStorageHdd: varPriceStorageHdd,
-        priceStorageSsd: varPriceStorageSsd,
-        priceStorageMulti: varPriceStorageMulti,
-        priceStorageSingle: varPriceStorageSingle,
       }));
+      
     };
+    
   });
+
+  
   function resultValue(inputElements) {
     return Array.from(inputElements).map(function (i, index) {
       let sumValue =
@@ -331,14 +335,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   ///// and  рисуем график
 
-  renderChart(getData(inputElements));
+  // renderChart(getData(inputElements));
 
-  inputRange.forEach((el) => {
-    el.addEventListener("input", (e) => {
-      // console.log("inputRange.forEach end");
-      renderChart(getData(inputElements));
-    });
-  });
+  // inputRange.forEach((el) => {
+  //   el.addEventListener("input", (e) => {
+  //     // console.log("inputRange.forEach end");
+  //     renderChart(getData(inputElements));
+  //   });
+  // });
   const formElement = document.querySelector(`.chart__data`);
 
   formElement.addEventListener(`submit`, (evt) => {
@@ -346,7 +350,7 @@ document.addEventListener("DOMContentLoaded", function () {
     evt.preventDefault();
 
     // Отрисовываем график
-    renderChart(getData(inputElements));
+    // renderChart(getData(inputElements));
     // Сбрасываем значения полей ввода
     formElement.reset();
   });
